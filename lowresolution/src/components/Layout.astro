@@ -1,0 +1,20 @@
+---
+import Header from './Header.jsx';
+import Footer from './Footer.jsx';
+
+const { title } = Astro.props;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title ? `${title} - Consultorio Psicológico` : 'Consultorio Psicológico'}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles/global.css">
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <Header />
+    <main>{Astro.slots.default}</main>
+    <Footer />
+  </body>
+</html>
