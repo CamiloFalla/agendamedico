@@ -1,3 +1,4 @@
+// src/components/AppointmentForm.jsx
 import React from 'react';
 
 function AppointmentForm() {

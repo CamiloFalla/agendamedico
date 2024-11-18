@@ -1,6 +1,7 @@
 ---
 import Layout from '../components/Layout.astro';
 import AppointmentForm from '../components/AppointmentForm.jsx';
+
 ---
 
 <Layout title="Inicio">
@@ -9,8 +10,7 @@ import AppointmentForm from '../components/AppointmentForm.jsx';
     <p class="text-center text-gray-700 mt-4">
       Gestiona tus citas de manera fácil y rápida.
     </p>
-    <!-- Cambia client:load por client:visible -->
-    <AppointmentForm client:only="react" />
-
+    <AppointmentForm client:load />
+	
   </div>
 </Layout>

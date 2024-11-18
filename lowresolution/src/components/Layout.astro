@@ -14,7 +14,9 @@ const { title } = Astro.props;
   </head>
   <body class="bg-gray-50 text-gray-800">
     <Header />
-    <main>{Astro.slots.default}</main>
+    <main>
+      <slot /> <!-- Esto asegura que el contenido del slot sea procesado correctamente -->
+    </main>
     <Footer />
   </body>
 </html>
