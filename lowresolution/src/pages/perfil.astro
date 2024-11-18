@@ -1,0 +1,17 @@
+---
+import Layout from '../components/Layout.astro';
+import Profile from '../components/Profile.jsx';
+
+// Simular datos de usuario
+const user = {
+  name: 'Juan Pérez',
+  email: 'juan@example.com',
+  userType: 'patient', // o 'specialist'
+};
+---
+
+<Layout title="Perfil">
+  <div class="container mx-auto mt-8">
+    <Profile user={user} />
+  </div>
+</Layout>

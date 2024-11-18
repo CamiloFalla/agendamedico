@@ -1,4 +1,3 @@
-// src/components/Header.jsx
 import React from 'react';
 
 function Header() {
@@ -24,6 +23,16 @@ function Header() {
               Pacientes
             </a>
           </li>
+          <li>
+            <a href="/login" className="hover:underline">
+              Iniciar Sesión
+            </a>
+          </li>
+          <li>
+            <a href="/registro" className="hover:underline">
+              Registrarse
+            </a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -31,3 +40,4 @@ function Header() {
 }
 
 export default Header;
+
