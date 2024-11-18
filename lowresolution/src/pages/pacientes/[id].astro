@@ -1,8 +1,27 @@
 ---
 import Layout from '../../components/Layout.astro';
+
+// Define el tipo de datos para un paciente
+interface Patient {
+  id: number;
+  name: string;
+  email: string;
+  // Agrega más campos si es necesario
+}
+
+export async function getStaticPaths() {
+  const response = await fetch('http://localhost:3001/api/patients');
+  const patients: Patient[] = await response.json(); // Especifica el tipo de datos
+
+  return patients.map((patient: Patient) => ({
+    params: { id: patient.id.toString() },
+  }));
+}
+
 const { id } = Astro.params;
+
 const response = await fetch(`http://localhost:3001/api/patients/${id}`);
-const patient = await response.json();
+const patient: Patient = await response.json(); // Especifica el tipo aquí también
 ---
 
 <Layout title={`Paciente ${patient.name}`}>
@@ -10,6 +29,6 @@ const patient = await response.json();
     <h2 class="text-2xl font-semibold text-purple-700 mb-4">Detalles del Paciente</h2>
     <p><strong>Nombre:</strong> {patient.name}</p>
     <p><strong>Correo Electrónico:</strong> {patient.email}</p>
-    {/* Otros detalles del paciente */}
+    <!-- Otros detalles del paciente -->
   </div>
 </Layout>

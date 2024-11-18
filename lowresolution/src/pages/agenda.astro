@@ -22,7 +22,7 @@ const appointments = [
       </thead>
       <tbody>
         {appointments.map((appointment) => (
-          <tr key={appointment.id}>
+          <tr data-id={appointment.id}>
             <td class="py-2">{appointment.date}</td>
             <td class="py-2">{appointment.time}</td>
             <td class="py-2">{appointment.patientName}</td>
