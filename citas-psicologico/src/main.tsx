@@ -24,6 +24,12 @@ const initializeUsers = () => {
 };
 
 initializeUsers();
+
+import { initializeAppointments } from './data/appointments';
+
+// Inicializa las citas precargadas si no existen
+initializeAppointments();
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <App/>

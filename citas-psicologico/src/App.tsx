@@ -3,11 +3,11 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Specialists from './pages/Specialists';
 import Appointment from './pages/Appointment';
-import Agenda from './pages/Agenda';
+import AgendaPage from './pages/AgendaPage';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
-
+import Payment from './components/Payment';
 
 const App: React.FC = () => {
   return (
@@ -17,18 +17,17 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<Specialists />} />
           <Route path="/cita/:id" element={<Appointment />} />
-          <Route path="/agenda" element={<Agenda />} />
+          <Route path="/agenda" element={<AgendaPage />} />
           <Route path="/perfil" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registration />} />
-          {/* Ruta para manejar errores */}
+          <Route path="/pago" element={<Payment />} />
           <Route path="*" element={<div>Página no encontrada</div>} />
         </Routes>
       </main>
       <Footer />
     </Router>
   );
-}
+};
 
 export default App;
-

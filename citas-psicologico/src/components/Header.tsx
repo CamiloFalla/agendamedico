@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 type User = {
+  name: string;
   userType: 'specialist' | 'patient';
 };
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const user = localStorage.getItem('loggedInUser');
@@ -56,14 +58,25 @@ const Header: React.FC = () => {
           }`}
         >
           <li><Link to="/" className="hover:underline block py-2">Inicio</Link></li>
-          
+
           {loggedInUser ? (
             <>
               {loggedInUser.userType === 'specialist' && (
-                <li><Link to="/agenda" className="hover:underline block py-2">Mi Agenda</Link></li>
+                <li>
+                  <Link to="/agenda" className="hover:underline block py-2">
+                    Mi Agenda
+                  </Link>
+                </li>
               )}
               {loggedInUser.userType === 'patient' && (
-                <li><Link to="/cita" className="hover:underline block py-2">Agendar Cita</Link></li>
+                <li>
+                  <button
+                    onClick={() => navigate('/agenda')}
+                    className="hover:underline block py-2"
+                  >
+                    Mi Agenda
+                  </button>
+                </li>
               )}
               <li><Link to="/perfil" className="hover:underline block py-2">Perfil</Link></li>
               <li>
