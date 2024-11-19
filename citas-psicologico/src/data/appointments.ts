@@ -5,7 +5,7 @@ export interface Appointment {
     id: number;
     date: string;
     time: string;
-    patientName: string;
+    patientName?: string; // Ahora puede ser opcional
     patientEmail: string;
     specialistName: string;
     specialistId: number;

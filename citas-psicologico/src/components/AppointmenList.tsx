@@ -1,73 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import { getAppointments } from '../data/appointments';
-
-type Appointment = {
-  id: number;
-  date: string;
-  time: string;
-  patientName: string;
-  patientEmail: string;
-  specialistName: string;
-  specialistId: number;
-  type: string;
-  status: string;
-};
+import { Appointment } from '../data/appointments';
 
 type AppointmentListProps = {
-  userType: 'patient' | 'specialist';
+  appointments: Appointment[];
+  userType: 'specialist' | 'patient';
 };
 
-const AppointmentList: React.FC<AppointmentListProps> = ({ userType }) => {
-  const [appointments, setAppointments] = useState<Appointment[]>([]);
-
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem('loggedInUser');
-    if (loggedInUser) {
-      const parsedUser = JSON.parse(loggedInUser);
-      const userAppointments = getAppointments().filter(
-        (a) =>
-          (userType === 'patient' && a.patientEmail === parsedUser.email) ||
-          (userType === 'specialist' && a.specialistId === parsedUser.id)
-      );
-      setAppointments(userAppointments);
-    }
-  }, [userType]);
-
+const AppointmentList: React.FC<AppointmentListProps> = ({ appointments, userType }) => {
   if (appointments.length === 0) {
-    return <p>No hay citas programadas.</p>;
+    return <p>No hay citas disponibles.</p>;
   }
 
   return (
-    <div className="overflow-x-auto mt-4">
-      <table className="min-w-full bg-white shadow-md rounded">
-        <thead>
-          <tr>
-            <th className="py-2 px-4 border-b">Fecha</th>
-            <th className="py-2 px-4 border-b">Hora</th>
-            <th className="py-2 px-4 border-b">
-              {userType === 'specialist' ? 'Paciente' : 'Especialista'}
-            </th>
-            <th className="py-2 px-4 border-b">Tipo</th>
-            <th className="py-2 px-4 border-b">Estado</th>
+    <table className="min-w-full bg-white border">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>{userType === 'specialist' ? 'Paciente' : 'Especialista'}</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {appointments.map((appointment) => (
+          <tr key={appointment.id}>
+            <td>{appointment.date}</td>
+            <td>{appointment.time}</td>
+            <td>
+              {userType === 'specialist'
+                ? appointment.patientName || "N/A"
+                : appointment.specialistName || "N/A"}
+            </td>
+            <td>{appointment.status}</td>
           </tr>
-        </thead>
-        <tbody>
-          {appointments.map((appointment) => (
-            <tr key={appointment.id}>
-              <td className="py-2 px-4 border-b">{appointment.date}</td>
-              <td className="py-2 px-4 border-b">{appointment.time}</td>
-              <td className="py-2 px-4 border-b">
-                {userType === 'specialist'
-                  ? appointment.patientName
-                  : appointment.specialistName}
-              </td>
-              <td className="py-2 px-4 border-b">{appointment.type}</td>
-              <td className="py-2 px-4 border-b">{appointment.status}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </table>
   );
 };
 

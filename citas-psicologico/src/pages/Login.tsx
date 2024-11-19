@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import LoginForm from '../components/LoginForm';
-import { Patient } from '../data/patients';
-import { Specialist } from '../data/specialists';
-
-type User = Patient | Specialist;
+import { User } from '../data/types';
 
 const Login: React.FC = () => {
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
@@ -22,3 +19,4 @@ const Login: React.FC = () => {
 };
 
 export default Login;
+

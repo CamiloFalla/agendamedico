@@ -1,19 +1,20 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
 import AppointmentForm from '../components/AppointmentForm';
 
-interface RouteParams {
-  id: string;
-}
+const Appointment: React.FC = () => {
+  // Obtén el parámetro `id` de la URL
+  const { id } = useParams<{ id: string }>();
 
-function Appointment() {
-  const { id } = useParams<RouteParams>();
+  // Asegúrate de que `id` no sea undefined antes de usarlo
+  if (!id) {
+    return <p className="text-center text-red-500">ID del especialista no encontrado.</p>;
+  }
 
   return (
     <div>
       <AppointmentForm specialistId={id} />
     </div>
   );
-}
+};
 
 export default Appointment;

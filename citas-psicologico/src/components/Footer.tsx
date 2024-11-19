@@ -8,8 +8,8 @@ const Footer: React.FC = () => {
           &copy; {new Date().getFullYear()} Consultorio Psicológico. Todos los derechos reservados.
         </p>
         <button
-          className="mt-4 px-4 py-2 bg-purple-700 text-white rounded hover:bg-purple-800 transition duration-200"
-          onClick={() => window.open('https://forms.google.com/su-google-form-url', '_blank')}
+          className="mt-4 px-4 py-2 bg-orange-700 text-white rounded hover:bg-purple-800 transition duration-200"
+          onClick={() => window.open('https://forms.gle/UjVJSMFR8qnwfbup8', '_blank')}
         >
           Calificar Aplicación
         </button>

@@ -4,6 +4,9 @@ import "./styles/global.css";
 import App from "./App";
 import patients from "./data/patients";
 import specialists from "./data/specialists";
+import { User } from "./data/types";
+
+
 
 
 // Inicializa usuarios en localStorage y evita duplicados
@@ -13,7 +16,7 @@ const initializeUsers = () => {
 
   // Evita duplicados
   const mergedUsers = [...existingUsers, ...newUsers].reduce((acc, user) => {
-    if (!acc.find((u) => u.email === user.email)) {
+    if (!acc.find((u: User) => u.email === user.email)) {
       acc.push(user);
     }
     return acc;

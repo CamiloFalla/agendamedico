@@ -56,8 +56,9 @@ const Agenda: React.FC = () => {
       <h1 className="text-2xl font-bold text-purple-700 mb-4">
         {userType === 'specialist' ? 'Mi Agenda (Especialista)' : 'Mi Agenda (Paciente)'}
       </h1>
+      
       <Calendar
-        onChange={setSelectedDate}
+        onChange={(value) => setSelectedDate(value as Date)} // Ajuste del tipo
         value={selectedDate}
         tileContent={renderTileContent}
       />
