@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 type User = {
   userType: 'specialist' | 'patient';
@@ -24,9 +25,9 @@ const Header: React.FC = () => {
   return (
     <header className="bg-purple-700 text-white">
       <nav className="container mx-auto flex items-center justify-between p-4">
-        <a href="/" className="text-xl font-bold">
+        <Link to="/" className="text-xl font-bold">
           <img src="/images/logo.png" alt="Logo" className="h-8 inline" /> Consultorio Psicológico
-        </a>
+        </Link>
         <button
           className="md:hidden block"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -54,17 +55,17 @@ const Header: React.FC = () => {
             menuOpen ? 'block' : 'hidden'
           }`}
         >
-          <li><a href="/" className="hover:underline block py-2">Inicio</a></li>
-          <li><a href="/especialistas" className="hover:underline block py-2">Especialistas</a></li>
+          <li><Link to="/" className="hover:underline block py-2">Inicio</Link></li>
+          
           {loggedInUser ? (
             <>
               {loggedInUser.userType === 'specialist' && (
-                <li><a href="/agenda" className="hover:underline block py-2">Mi Agenda</a></li>
+                <li><Link to="/agenda" className="hover:underline block py-2">Mi Agenda</Link></li>
               )}
               {loggedInUser.userType === 'patient' && (
-                <li><a href="/cita" className="hover:underline block py-2">Agendar Cita</a></li>
+                <li><Link to="/cita" className="hover:underline block py-2">Agendar Cita</Link></li>
               )}
-              <li><a href="/perfil" className="hover:underline block py-2">Perfil</a></li>
+              <li><Link to="/perfil" className="hover:underline block py-2">Perfil</Link></li>
               <li>
                 <button onClick={handleLogout} className="hover:underline block py-2">
                   Cerrar Sesión
@@ -73,8 +74,8 @@ const Header: React.FC = () => {
             </>
           ) : (
             <>
-              <li><a href="/login" className="hover:underline block py-2">Iniciar Sesión</a></li>
-              <li><a href="/registro" className="hover:underline block py-2">Registrarse</a></li>
+              <li><Link to="/login" className="hover:underline block py-2">Iniciar Sesión</Link></li>
+              <li><Link to="/registro" className="hover:underline block py-2">Registrarse</Link></li>
             </>
           )}
         </ul>

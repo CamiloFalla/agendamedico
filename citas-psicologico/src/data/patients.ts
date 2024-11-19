@@ -4,10 +4,9 @@ export interface Patient {
     name: string;
     email: string;
     password: string;
-    userType: 'patient'; // Valor fijo para indicar que es un paciente
+    userType: 'patient';
   }
   
-  // Lista de pacientes precargados
   const patients: Patient[] = [
     {
       id: 1,
